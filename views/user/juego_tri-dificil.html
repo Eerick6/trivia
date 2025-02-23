@@ -93,6 +93,7 @@
         let score = 0;
         let startTime = Date.now();
         let timerInterval;
+        const level = 'dificil'; // Nivel actual
 
         // Función para mostrar la pregunta actual
         function showQuestion() {
@@ -146,13 +147,14 @@
             const minutes = Math.floor(totalTime / 60);
             const seconds = totalTime % 60;
 
+            // Obtener los intentos actuales
+            const results = JSON.parse(localStorage.getItem(`results-${level}`)) || { score: 0, time: 0, attempts: 0 };
+            results.attempts += 1; // Incrementar el contador de intentos
+
             // Guardar los resultados en localStorage
-            const results = {
-                score: score,
-                time: totalTime,
-                level: 'dificil' // Nivel actual
-            };
-            localStorage.setItem('results-dificil', JSON.stringify(results));
+            results.score = score;
+            results.time = totalTime;
+            localStorage.setItem(`results-${level}`, JSON.stringify(results));
 
             Swal.fire({
                 title: '¡Juego terminado!',

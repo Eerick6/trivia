@@ -17,7 +17,7 @@
     <div id="nav-container"></div>
 
     <div class="frame">
-        <h2>Taxation Land</h2>
+        <h2>Dashboard</h2>
         <p>Bienvenido usuario</p>
         <button id="play-button" class="play-button animate__animated animate__pulse">Jugar de nuevo</button>
 
@@ -28,18 +28,21 @@
                 <h3>Nivel Fácil</h3>
                 <p><i class="fas fa-star"></i> Puntuación: <span id="score-facil">0</span> / 3</p>
                 <p><i class="fas fa-clock"></i> Tiempo: <span id="time-facil">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-facil">0</span></p>
             </div>
             <div class="result-card animate__animated animate__zoomIn">
                 <i class="fas fa-star-half-alt icon"></i>
                 <h3>Nivel Medio</h3>
                 <p><i class="fas fa-star"></i> Puntuación: <span id="score-medio">0</span> / 3</p>
                 <p><i class="fas fa-clock"></i> Tiempo: <span id="time-medio">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-medio">0</span></p>
             </div>
             <div class="result-card animate__animated animate__zoomIn">
                 <i class="fas fa-star-and-crescent icon"></i>
                 <h3>Nivel Difícil</h3>
                 <p><i class="fas fa-star"></i> Puntuación: <span id="score-dificil">0</span> / 3</p>
                 <p><i class="fas fa-clock"></i> Tiempo: <span id="time-dificil">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-dificil">0</span></p>
             </div>
         </div>
     </div>
@@ -74,18 +77,21 @@
 
         // Función para actualizar los resultados en el dashboard
         function updateResults() {
-            const resultsFacil = JSON.parse(localStorage.getItem('results-facil')) || { score: 0, time: 0 };
-            const resultsMedio = JSON.parse(localStorage.getItem('results-medio')) || { score: 0, time: 0 };
-            const resultsDificil = JSON.parse(localStorage.getItem('results-dificil')) || { score: 0, time: 0 };
+            const resultsFacil = JSON.parse(localStorage.getItem('results-facil')) || { score: 0, time: 0, attempts: 0 };
+            const resultsMedio = JSON.parse(localStorage.getItem('results-medio')) || { score: 0, time: 0, attempts: 0 };
+            const resultsDificil = JSON.parse(localStorage.getItem('results-dificil')) || { score: 0, time: 0, attempts: 0 };
 
             document.getElementById('score-facil').textContent = resultsFacil.score;
             document.getElementById('time-facil').textContent = formatTime(resultsFacil.time);
+            document.getElementById('attempts-facil').textContent = resultsFacil.attempts;
 
             document.getElementById('score-medio').textContent = resultsMedio.score;
             document.getElementById('time-medio').textContent = formatTime(resultsMedio.time);
+            document.getElementById('attempts-medio').textContent = resultsMedio.attempts;
 
             document.getElementById('score-dificil').textContent = resultsDificil.score;
             document.getElementById('time-dificil').textContent = formatTime(resultsDificil.time);
+            document.getElementById('attempts-dificil').textContent = resultsDificil.attempts;
         }
 
         // Función para formatear el tiempo en MM:SS
