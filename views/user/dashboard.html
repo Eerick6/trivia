@@ -3,19 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  🥑 Inicio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://use.fontawesome.com/releases/v5.6.1/js/all.js"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style/user/dashboard.css">
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animate.css para animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
-    <!-- Aquí se cargará el nav no tocar se va los estilos -->
+    <!-- Aquí se cargará el nav dinámicamente -->
     <div id="nav-container"></div>
 
     <div class="frame">
-        <h2>Dashboard</h2>
+        <h2>Taxation Land</h2>
         <p>Bienvenido usuario</p>
+        <button id="play-button" class="play-button animate__animated animate__pulse">Jugar de nuevo</button>
+
+        <!-- Resultados por nivel en 3 columnas -->
+        <div class="results-grid">
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star icon"></i>
+                <h3>Nivel Fácil</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-facil">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-facil">00:00</span></p>
+            </div>
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star-half-alt icon"></i>
+                <h3>Nivel Medio</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-medio">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-medio">00:00</span></p>
+            </div>
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star-and-crescent icon"></i>
+                <h3>Nivel Difícil</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-dificil">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-dificil">00:00</span></p>
+            </div>
+        </div>
     </div>
 
+    <!-- Modal de selección de nivel -->
+    <div id="level-modal" class="modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close-button">&times;</span>
+            <h2>Selecciona un nivel</h2>
+            <button class="level-button" onclick="selectLevel('facil')">
+                <i class="fas fa-star"></i> Fácil
+            </button>
+            <button class="level-button" onclick="selectLevel('medio')">
+                <i class="fas fa-star-half-alt"></i> Medio
+            </button>
+            <button class="level-button" onclick="selectLevel('dificil')">
+                <i class="fas fa-star-and-crescent"></i> Difícil
+            </button>
+        </div>
+    </div>
+
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         // Cargar el nav dinámicamente
         fetch("/views/user/nav.html")
@@ -24,6 +71,56 @@
                 document.getElementById("nav-container").innerHTML = html;
             })
             .catch(error => console.error("Error al cargar el nav:", error));
+
+        // Función para actualizar los resultados en el dashboard
+        function updateResults() {
+            const resultsFacil = JSON.parse(localStorage.getItem('results-facil')) || { score: 0, time: 0 };
+            const resultsMedio = JSON.parse(localStorage.getItem('results-medio')) || { score: 0, time: 0 };
+            const resultsDificil = JSON.parse(localStorage.getItem('results-dificil')) || { score: 0, time: 0 };
+
+            document.getElementById('score-facil').textContent = resultsFacil.score;
+            document.getElementById('time-facil').textContent = formatTime(resultsFacil.time);
+
+            document.getElementById('score-medio').textContent = resultsMedio.score;
+            document.getElementById('time-medio').textContent = formatTime(resultsMedio.time);
+
+            document.getElementById('score-dificil').textContent = resultsDificil.score;
+            document.getElementById('time-dificil').textContent = formatTime(resultsDificil.time);
+        }
+
+        // Función para formatear el tiempo en MM:SS
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Actualizar los resultados al cargar el dashboard
+        updateResults();
+
+        // Lógica para el modal de selección de nivel
+        const modal = document.getElementById('level-modal');
+        const playButton = document.getElementById('play-button');
+        const closeButton = document.querySelector('.close-button');
+
+        playButton.addEventListener('click', () => {
+            modal.style.display = 'block'; // Mostrar el modal al hacer clic en "Jugar de nuevo"
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none'; // Cerrar el modal al hacer clic en la "X"
+        });
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none'; // Cerrar el modal si se hace clic fuera de él
+            }
+        }
+
+        // Función para seleccionar el nivel
+        function selectLevel(level) {
+            window.location.href = `juego_tri-${level}.html`; // Redirigir al nivel seleccionado
+        }
     </script>
 </body>
 </html>
