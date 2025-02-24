@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = "localhost";  // Host de la base de datos
-    private $db_name = "trivia";  // Nombre de la base de datos
+    private $db_name = "trivia_game";  // Nombre de la base de datos
     private $username = "root";  // Usuario de la base de datos
     private $password = "";  // Contraseña del usuario de la base de datos
     private $conn;
