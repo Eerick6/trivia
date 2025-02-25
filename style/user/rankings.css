@@ -1,52 +1,94 @@
-
+#nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  z-index: 1000; /* Asegura que el menú esté por encima del contenido */
+}
 .frame {
-    margin-top: 10px;
-    animation: fadeIn 1.5s ease-in-out;
-    font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
 
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.733);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-h2 {
-    font-size: 2.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    animation: bounce 2s infinite;
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
 }
-.table-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    animation: slideIn 1s ease-in-out;
-}
-.ranking-table {
-    width: 60%;
-    border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-th, td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
+
 th {
-    background: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 tr:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transition: 0.3s;
+  background-color: rgba(139, 119, 0, 0.1);
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+
+.rank-icon {
+  font-size: 20px;
 }
-@keyframes slideIn {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+
+.gold {
+  color: #ffd700;
 }
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+
+.silver {
+  color: #c0c0c0;
+}
+
+.bronze {
+  color: #cd7f32;
+}
+
+.icono-sorpresa {
+  font-size: 24px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  th,
+  td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }

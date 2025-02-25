@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🥑 Rankings</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🥑 Taxation Land - Rankings </title>
+    <!-- SweetAlert2 para alertas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- FontAwesome para iconos -->
     <script src="https://use.fontawesome.com/releases/v5.6.1/js/all.js"></script>
+    <!-- Animate.css para animaciones -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="/style/user/rankings.css">
-</head>
-<body>
-    <!-- Aquí se cargará el nav no tocar se va los estilos -->
+  </head>
+  <body>
+    <!-- Aquí se cargará el nav dinámicamente -->
     <div id="nav-container"></div>
 
-    <div class="frame">
-        <h2><i class="fas fa-trophy"></i> Rankings</h2>
-        <p>Bienvenido</p>
-
-        <div class="table-container">
-            <table class="ranking-table">
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-medal"></i> Posición</th>
-                        <th><i class="fas fa-user"></i> Jugador</th>
-                        <th><i class="fas fa-star"></i> Puntos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>🥇 1</td>
-                        <td>Juan Pérez</td>
-                        <td>120</td>
-                    </tr>
-                    <tr>
-                        <td>🥈 2</td>
-                        <td>Maria López</td>
-                        <td>110</td>
-                    </tr>
-                    <tr>
-                        <td>🥉 3</td>
-                        <td>Carlos Díaz</td>
-                        <td>100</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="frame" style="margin-top: 100px;">
+      <h2 class="animate__animated animate__bounceIn">Rankings</h2>
+      <br />
+      <p>Consulta el progreso de los jugadores.</p>
+      <br />
+      <!-- Tabla de rankings -->
+      <table id="rankings-table">
+        <thead>
+          <tr>
+            <th>Posición</th>
+            <th>Nombre</th>
+            <th>Fácil (Puntos/Tiempo/Intentos)</th>
+            <th>Medio (Puntos/Tiempo/Intentos)</th>
+            <th>Difícil (Puntos/Tiempo/Intentos)</th>
+            <th>Íconos Comprados</th>
+            <th>Ícono Sorpresa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Los datos se cargarán dinámicamente con JavaScript -->
+        </tbody>
+      </table>
     </div>
-
-    <script>
-        // Cargar el nav dinámicamente
-        fetch("/views/user/nav.html")
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("nav-container").innerHTML = html;
-            })
-            .catch(error => console.error("Error al cargar el nav:", error));
-    </script>
-</body>
+    <script src="/style/js/rankings.js"></script>
+    
+  </body>
 </html>
