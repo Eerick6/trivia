@@ -1,3 +1,3 @@
 <?php
-include('views/home.php');
+include('views/user/dashboard.html');
 ?>

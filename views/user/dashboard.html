@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 🥑 Taxation Land - Dashboard</title>
+    <link rel="stylesheet" href="/style/user/dashboard.css">
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animate.css para animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Aquí se cargará el nav dinámicamente -->
+    <div id="nav-container"></div>
+
+    <div class="frame">
+        <p style="color: #00c900;">𝐓𝐚𝐱𝐚𝐭𝐢𝐨𝐧 𝐋𝐚𝐧𝐝</p>
+        <br>
+        <p>Usuario:</p>
+        <br>
+        <button id="play-button" class="play-button animate__animated animate__pulse">Jugar de nuevo</button>
+
+        <!-- Resultados por nivel en 3 columnas -->
+        <div class="results-grid">
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star icon"></i>
+                <h3>Nivel Fácil</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-facil">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-facil">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-facil">0</span></p>
+            </div>
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star-half-alt icon"></i>
+                <h3>Nivel Medio</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-medio">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-medio">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-medio">0</span></p>
+            </div>
+            <div class="result-card animate__animated animate__zoomIn">
+                <i class="fas fa-star-and-crescent icon"></i>
+                <h3>Nivel Difícil</h3>
+                <p><i class="fas fa-star"></i> Puntuación: <span id="score-dificil">0</span> / 3</p>
+                <p><i class="fas fa-clock"></i> Tiempo: <span id="time-dificil">00:00</span></p>
+                <p><i class="fas fa-redo"></i> Intentos: <span id="attempts-dificil">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de selección de nivel -->
+    <div id="level-modal" class="modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close-button">&times;</span>
+            <h2 style="color: rgba(56, 56, 56, 0.822)">Selecciona un nivel</h2>
+            <button class="level-button" onclick="selectLevel('facil')">
+                <i class="fas fa-star"></i> Fácil
+            </button>
+            <button class="level-button" onclick="selectLevel('medio')">
+                <i class="fas fa-star-half-alt"></i> Medio
+            </button>
+            <button class="level-button" onclick="selectLevel('dificil')">
+                <i class="fas fa-star-and-crescent"></i> Difícil
+            </button>
+        </div>
+    </div>
+
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Aquí se cargará el script dinámicamente -->
+    <script src="/style/js/dashboard.js"></script>
+</body>
+</html>
