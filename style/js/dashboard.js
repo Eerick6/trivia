@@ -1,5 +1,5 @@
 // Cargar el nav dinámicamente
-fetch("/views/user/nav.html")
+fetch("views/user/nav.html")
     .then(response => response.text())
     .then(html => {
         document.getElementById("nav-container").innerHTML = html;
@@ -56,5 +56,5 @@ window.onclick = function (event) {
 
 // Función para seleccionar el nivel
 function selectLevel(level) {
-    window.location.href = `juego_tri-${level}.html`; // Redirigir al nivel seleccionado
+    window.location.href = `${level}`; // Redirigir al nivel seleccionado
 }

@@ -1,35 +1,37 @@
 <?php
-session_start();
-require 'config.php'; // Archivo de conexión a la BD
+require "config/db.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password'];
+class LoginModel {
+    public function authenticate($email, $username, $password) {
+        global $conn;
 
-    if (!empty($email) && !empty($password)) {
-        $stmt = $conn->prepare("SELECT id, password FROM usuarios WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password_hash);
-            $stmt->fetch();
-
-            // Verificar si la contraseña ingresada coincide con el hash almacenado
-            if (password_verify($password, $password_hash)) { 
-                $_SESSION['user_id'] = $id;
-                echo json_encode(["status" => "success", "message" => "Login exitoso"]);
-            } else {
-                echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);
-            }
+        // Verificar si se proporciona email o username
+        if (!empty($email)) {
+            $query = "SELECT * FROM users WHERE email = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $email);
         } else {
-            echo json_encode(["status" => "error", "message" => "Correo no registrado"]);
+            $query = "SELECT * FROM users WHERE username = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("s", $username);
         }
-        $stmt->close();
-    } else {
-        echo json_encode(["status" => "error", "message" => "Faltan datos"]);
+
+        // Ejecutar la consulta y verificar errores
+        if (!$stmt->execute()) {
+            die("Error al ejecutar la consulta: " . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+        
+        // Verificar si el usuario existe
+        $user = $result->fetch_assoc();
+        if ($user && password_verify($password, $user['password'])) {
+            // Si la contraseña es correcta, retornar los datos del usuario
+            return $user;
+        } else {
+            // Si no es válido, retornar NULL
+            return null;
+        }
     }
 }
-$conn->close();
 ?>

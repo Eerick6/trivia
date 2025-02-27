@@ -17,13 +17,20 @@
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     />
     <!-- estilos -->
-    <link rel="stylesheet" href="/style/user/register.css" />
+    <link rel="stylesheet" href="style/user/register.css" />
   </head>
   <body>
     <div class="container">
       <div class="avatar" id="lottie"></div>
       <h2 style="color: green;">Taxation Land</h2>
       <h2 style="color: green;">Registrate</h2>
+
+      <!-- Input Username -->
+      <div class="input-container">
+        <i class="fas fa-user"></i>
+        <!-- Icono de usuario -->
+        <input type="text" id="username" placeholder="Nombre de usuario" />
+      </div>
 
       <!-- Input Email -->
       <div class="input-container">
@@ -46,13 +53,13 @@
         Ingresar
       </button>
 
-      <p class="register">Si ya tienes cuenta <a href="/views/user/login.html">Inicia sesion</a></p>
+      <p class="register">Si ya tienes cuenta <a href="login">Inicia sesion</a></p>
     </div>
 
     <!-- funcioanlidaes -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-    <script src="/style/js/register.js"></script>
+    <script src="style/js/register.js"></script>
   </body>
 </html>

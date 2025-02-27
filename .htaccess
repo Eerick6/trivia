@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Redirigir la ruta /register a index.php
+RewriteRule ^register$ index.php [QSA,L]
+
+# Redirigir la ruta /login a index.php
+RewriteRule ^login$ index.php [QSA,L]
+
+# Redirigir la ruta /dashboard a index.php
+RewriteRule ^dashboard$ index.php [QSA,L]
+
+# Redirigir la ruta /facil a index.php
+RewriteRule ^facil$ index.php [QSA,L]
+
+# Redirigir la ruta /api-facil a index.php
+RewriteRule ^api-facil$ index.php [QSA,L]
+
+# Redirigir la ruta /medio a index.php
+RewriteRule ^medio$ index.php [QSA,L]
+
+# Redirigir la ruta /dificil a index.php
+RewriteRule ^dificil$ index.php [QSA,L]
